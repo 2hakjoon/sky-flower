@@ -5,11 +5,10 @@ import { ImageUploadButton } from "@/components/core/image-upload/ImageUploadBut
 import GoogleMapComponent from "@/components/ui/google-map/GoogleMapComponent";
 import { MarkerProps } from "@/components/ui/google-map/GoogleMapComponent";
 import Compressor from "compressorjs";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 export default function FlowerGarden() {
   const [uploadedImages, setUploadedImages] = useState<MarkerProps[]>([]);
-  console.log("uploadedImages: ", uploadedImages);
   const [center, setCenter] = useState<{ lat: number; lng: number }>();
   const [dataUrl, setSetDataUrl] = useState<string>();
 

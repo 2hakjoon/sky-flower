@@ -34,6 +34,7 @@ function GoogleMapComponent({
     lat: 37.526006,
     lng: 126.936508,
   });
+
   const [map, setMap] = React.useState<google.maps.Map | null>(null);
   const [zoom, setZoom] = React.useState(15);
 
@@ -53,10 +54,18 @@ function GoogleMapComponent({
   }, 200);
 
   useEffect(() => {
-    navigator.geolocation.getCurrentPosition((position) => {
-      const { latitude, longitude } = position.coords;
-      setCenter({ lat: latitude, lng: longitude });
-    });
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        const { latitude, longitude } = position.coords;
+        setCenter({ lat: latitude, lng: longitude });
+      },
+      () => {},
+      {
+        enableHighAccuracy: true,
+        maximumAge: 0,
+        timeout: 5000,
+      }
+    );
   }, []);
 
   return isLoaded ? (

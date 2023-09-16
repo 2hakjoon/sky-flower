@@ -3,3 +3,5 @@ declare global {
     Kakao: any;
   }
 }
+
+export const Kakao = window.Kakao;

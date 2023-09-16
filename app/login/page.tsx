@@ -2,8 +2,8 @@
 
 export default function Login() {
   const loginWithKakao = () => {
-    if (!window?.Kakao) return;
-    Kakao.Auth.authorize({
+    if (window.Kakao) return;
+    window.Kakao.Auth.authorize({
       redirectUri: "http://localhost:4432",
     });
   };

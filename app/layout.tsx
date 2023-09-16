@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import { BottomNavigation } from "@/components/ui/navigations/BottomNavigation";
+import { MainLayout } from "@/components/ui/layout/MainLayout";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -13,8 +15,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={"w-[100vw] h-[100vh] flex justify-center"}>
-        <main className="max-[400px] h-full">{children}</main>
+      <body className={"w-[100vw] h-[100vh] flex justify-center "}>
+        <MainLayout className={"max-[400px] h-full relative w-[400px]"}>
+          {children}
+          <BottomNavigation />
+        </MainLayout>
       </body>
     </html>
   );

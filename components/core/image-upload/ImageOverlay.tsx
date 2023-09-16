@@ -35,7 +35,7 @@ export const ImageOverlay = ({ url, onOverlayed }: ImageOverlayProps) => {
         ctx.restore();
         canvas.toBlob((blob: any) => {
           let file = new File([blob], "fileName.jpg", { type: "image/png" });
-          console.log("file: ", file);
+          // console.log("file: ", file);
           onOverlayed(file);
         }),
           "image/png";

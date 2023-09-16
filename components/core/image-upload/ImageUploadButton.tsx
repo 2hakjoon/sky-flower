@@ -12,6 +12,7 @@ export const ImageUploadButton = ({ onUploaded }: ImageUploadButtonProps) => {
     if (!File) {
       return;
     }
+    console.log("File: ", File);
     onUploaded(File);
   };
 

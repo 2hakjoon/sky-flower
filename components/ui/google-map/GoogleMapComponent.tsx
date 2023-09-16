@@ -16,11 +16,6 @@ const containerStyle = {
   height: "400px",
 };
 
-const center = {
-  lat: 37.526006,
-  lng: 126.936508,
-};
-
 interface GoogleMapComponentProps {
   onChangeCenter: (center: { lat: number; lng: number }) => void;
   markers: MarkerProps[];
@@ -35,6 +30,10 @@ function GoogleMapComponent({
     googleMapsApiKey: GOOGLE_MAP_API_KEY,
   });
 
+  const [center, setCenter] = React.useState<{ lat: number; lng: number }>({
+    lat: 37.526006,
+    lng: 126.936508,
+  });
   const [map, setMap] = React.useState<google.maps.Map | null>(null);
   const [zoom, setZoom] = React.useState(15);
 
@@ -53,7 +52,12 @@ function GoogleMapComponent({
     onChangeCenter({ lat: center.lat(), lng: center.lng() });
   }, 200);
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+    navigator.geolocation.getCurrentPosition((position) => {
+      const { latitude, longitude } = position.coords;
+      setCenter({ lat: latitude, lng: longitude });
+    });
+  }, []);
 
   return isLoaded ? (
     <GoogleMap

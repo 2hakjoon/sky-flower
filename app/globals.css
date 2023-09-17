@@ -2,6 +2,94 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer utilities {
+  .suit-bold-36-52 {
+    font-family: "suit-bold";
+    font-size: 36px;
+    line-height: 52px;
+  }
+  .suit-bold-32-44 {
+    font-family: "suit-bold";
+    font-size: 32px;
+    line-height: 44px;
+  }
+  .suit-bold-24-32 {
+    font-family: "suit-bold";
+    font-size: 24px;
+    line-height: 32px;
+  }
+  .suit-bold-24-32 {
+    font-family: "suit-bold";
+    font-size: 24px;
+    line-height: 32px;
+  }
+  .suit-bold-18-24 {
+    font-family: "suit-bold";
+    font-size: 18px;
+    line-height: 24px;
+  }
+  .suit-bold-16-20 {
+    font-family: "suit-bold";
+    font-size: 16px;
+    line-height: 20px;
+  }
+  .suit-bold-14-16 {
+    font-family: "suit-bold";
+    font-size: 14px;
+    line-height: 16px;
+  }
+  .suit-normal-16-24 {
+    font-family: "suit-normal";
+    font-size: 16px;
+    line-height: 24px;
+  }
+  .suit-normal-16-20 {
+    font-family: "suit-normal";
+    font-size: 16px;
+    line-height: 20px;
+  }
+  .suit-normal-12-16 {
+    font-family: "suit-normal";
+    font-size: 12px;
+    line-height: 16px;
+  }
+  .suit-normal-16-20 {
+    font-family: "suit-normal";
+    font-size: 16px;
+    line-height: 20px;
+  }
+  .suit-normal-14-16 {
+    font-family: "suit-normal";
+    font-size: 14px;
+    line-height: 16px;
+  }
+  .suit-normal-12-14 {
+    font-family: "suit-normal";
+    font-size: 12px;
+    line-height: 14px;
+  }
+
+  .suit-normal-10-12 {
+    font-family: "suit-normal";
+    font-size: 10px;
+    line-height: 12px;
+  }
+}
+
+@font-face {
+  font-family: "suit-bold";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_suit@1.0/SUIT-Bold.woff2")
+    format("woff2");
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "suit-normal";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_suit@1.0/SUIT-Regular.woff2")
+    format("woff2");
+  font-style: normal;
+}
+
 :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;

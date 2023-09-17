@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { BottomNavigation } from "@/components/ui/navigations/BottomNavigation";
 import { MainLayout } from "@/components/core/layout/MainLayout";
 import { KakaoLoginScript } from "@/components/core/scripts/KakaoLogin";
 
@@ -17,10 +16,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <KakaoLoginScript />
-      <body className={"w-[100vw] h-[100vh] flex justify-center "}>
-        <MainLayout className={"max-[400px] h-full relative w-[400px]"}>
+      <body className={"w-[100vw] flex justify-center "}>
+        <MainLayout
+          className={"max-[400px] h-[100vh - 20px]  relative w-[400px]"}
+        >
           {children}
-          <BottomNavigation />
         </MainLayout>
       </body>
     </html>

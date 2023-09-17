@@ -1,26 +1,23 @@
-"use client";
-
-import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 export const BottomNavigation = () => {
-  const router = useRouter();
-
   return (
-    <div>
-      <div className="flex items-center justify-around absolute left-0 bottom-0 w-full">
-        <div onClick={() => router.push("/", { scroll: false })}>
+    <>
+      <div className="h-[50px] w-full" />
+      <div className="flex items-center justify-around fixed left-0 bottom-0 w-full h-[50px] bg-[gray] z-10">
+        <Link href="/">
           <span>{"홈"}</span>
-        </div>
-        <div onClick={() => router.push("/flower-garden", { scroll: false })}>
+        </Link>
+        <Link href="/flower-garden">
           <span>{"지도"}</span>
-        </div>
-        <div onClick={() => router.push("/flowers", { scroll: false })}>
+        </Link>
+        <Link href="/flowers">
           <span>{"사진첩"}</span>
-        </div>
-        <div onClick={() => router.push("/gardening", { scroll: false })}>
+        </Link>
+        <Link href="/gardening">
           <span>{"업로드"}</span>
-        </div>
+        </Link>
       </div>
-    </div>
+    </>
   );
 };

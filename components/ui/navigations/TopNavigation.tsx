@@ -4,13 +4,12 @@ export const TopNavigation = () => {
   return (
     <>
       <div className="h-[50px] w-full" />
-
-      <div className="flex items-center justify-between fixed left-0 top-0 w-full h-[50px] bg-[gray] z-10">
+      <div className="flex items-center justify-between fixed top-0 w-full h-[50px] bg-wt z-10 max-w-[500px] mx-auto pl-[20px] pr-[16px] py[15px]">
         <Link href="/">
-          <span>{"홈"}</span>
+          <span className="head05">{"SKYFLOWER"}</span>
         </Link>
         <Link href="/login">
-          <span>{"로그인"}</span>
+          <span className="tb03 text-bl-600">{"로그인/가입"}</span>
         </Link>
       </div>
     </>

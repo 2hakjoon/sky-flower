@@ -3,73 +3,77 @@
 @tailwind utilities;
 
 @layer utilities {
-  .suit-bold-36-52 {
+  .head01 {
     font-family: "suit-bold";
     font-size: 36px;
     line-height: 52px;
   }
-  .suit-bold-32-44 {
+  .head02 {
     font-family: "suit-bold";
     font-size: 32px;
     line-height: 44px;
   }
-  .suit-bold-24-32 {
+  .head03 {
     font-family: "suit-bold";
     font-size: 24px;
     line-height: 32px;
   }
-  .suit-bold-24-32 {
+  .head04 {
     font-family: "suit-bold";
     font-size: 24px;
     line-height: 32px;
   }
-  .suit-bold-18-24 {
+  .head05 {
+    font-family: "suit-bold";
+    font-size: 20px;
+    line-height: 28px;
+  }
+  .tb01 {
     font-family: "suit-bold";
     font-size: 18px;
     line-height: 24px;
   }
-  .suit-bold-16-20 {
+  .tb02 {
     font-family: "suit-bold";
     font-size: 16px;
     line-height: 20px;
   }
-  .suit-bold-14-16 {
+  .tb03 {
     font-family: "suit-bold";
     font-size: 14px;
     line-height: 16px;
   }
-  .suit-normal-16-24 {
+  .body01 {
     font-family: "suit-normal";
     font-size: 16px;
     line-height: 24px;
   }
-  .suit-normal-16-20 {
+  .body02 {
     font-family: "suit-normal";
     font-size: 16px;
     line-height: 20px;
   }
-  .suit-normal-12-16 {
+  .body03 {
     font-family: "suit-normal";
     font-size: 12px;
     line-height: 16px;
   }
-  .suit-normal-16-20 {
+  .tr01 {
     font-family: "suit-normal";
     font-size: 16px;
     line-height: 20px;
   }
-  .suit-normal-14-16 {
+  .tr02 {
     font-family: "suit-normal";
     font-size: 14px;
     line-height: 16px;
   }
-  .suit-normal-12-14 {
+  .tr03 {
     font-family: "suit-normal";
     font-size: 12px;
     line-height: 14px;
   }
-
-  .suit-normal-10-12 {
+  .tr04 {
     font-family: "suit-normal";
     font-size: 10px;
     line-height: 12px;

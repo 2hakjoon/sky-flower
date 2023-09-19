@@ -1,6 +1,13 @@
+"use client";
+
+import { useMe } from "@/hooks/auth/useMe";
 import Link from "next/link";
 
 export const TopNavigation = () => {
+  const { data, error, isLoading } = useMe();
+  console.log("error: ", error);
+  console.log("data: ", data);
+
   return (
     <>
       <div className="h-[50px] w-full" />

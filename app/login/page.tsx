@@ -1,10 +1,12 @@
 "use client";
 
+import { CLIENT_URL } from "@/util/const";
+
 export default function Login() {
   const loginWithKakao = () => {
     if (!window.Kakao) return;
     window.Kakao.Auth.authorize({
-      redirectUri: "https://api.skyflower.isthislee.com/auth/login/kakao",
+      redirectUri: CLIENT_URL + "/login/processing",
     });
   };
 

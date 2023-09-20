@@ -1,10 +1,7 @@
-"use client";
-
 import type { Metadata } from "next";
 import "./globals.css";
 import { MainLayout } from "@/components/core/layout/MainLayout";
 import { KakaoLoginScript } from "@/components/core/scripts/KakaoLogin";
-import { useParams, usePathname } from "next/navigation";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -16,21 +13,13 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const path = usePathname();
-
-  const emptyPagePath = ["/login/processing", "/login"];
-
   return (
     <html lang="en">
       <KakaoLoginScript />
       <body className={"w-[100vw] flex justify-center "}>
-        {emptyPagePath.includes(path) ? (
-          <main className={" w-full relative max-w-[500px]"}>{children}</main>
-        ) : (
-          <MainLayout className={" w-full relative max-w-[500px]"}>
-            {children}
-          </MainLayout>
-        )}
+        <MainLayout className={" w-full relative max-w-[500px]"}>
+          {children}
+        </MainLayout>
       </body>
     </html>
   );

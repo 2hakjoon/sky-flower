@@ -1,5 +1,3 @@
-import { BottomNavigation } from "@/components/ui/navigations/BottomNavigation";
-import { TopNavigation } from "@/components/ui/navigations/TopNavigation";
 import { ReactQueryClient } from "../react-query/ReactQeuryClient";
 
 interface MainLayoutProps {
@@ -10,11 +8,7 @@ interface MainLayoutProps {
 export const MainLayout = ({ children, className }: MainLayoutProps) => {
   return (
     <ReactQueryClient>
-      <main className={className}>
-        <TopNavigation />
-        {children}
-        <BottomNavigation />
-      </main>
+      <main className={className}>{children}</main>
     </ReactQueryClient>
   );
 };

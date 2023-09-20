@@ -18,14 +18,14 @@ export default function RootLayout({
 }) {
   const path = usePathname();
 
-  const emptyPagePath = ["/login/processing"];
+  const emptyPagePath = ["/login/processing", "/login"];
 
   return (
     <html lang="en">
       <KakaoLoginScript />
       <body className={"w-[100vw] flex justify-center "}>
         {emptyPagePath.includes(path) ? (
-          <>{children}</>
+          <main className={" w-full relative max-w-[500px]"}>{children}</main>
         ) : (
           <MainLayout className={" w-full relative max-w-[500px]"}>
             {children}

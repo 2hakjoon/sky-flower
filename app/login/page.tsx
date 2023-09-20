@@ -1,5 +1,6 @@
 "use client";
 
+import { Kakao } from "@/components/icons/Kakao";
 import { CLIENT_URL } from "@/util/const";
 
 export default function Login() {
@@ -11,15 +12,17 @@ export default function Login() {
   };
 
   return (
-    <>
-      <span>{"로그인"}</span>
-      <div onClick={loginWithKakao}>
-        <img
-          src="https://k.kakaocdn.net/14/dn/btroDszwNrM/I6efHub1SN5KCJqLm1Ovx1/o.jpg"
-          width="222"
-          alt="카카오 로그인 버튼"
-        />
+    <div className="flex flex-col items-center gap-[8px] mt-[100%]">
+      <span className="text-tr03">
+        {"SKYFLOWER는 최소한의 개인정보만 수집합니다"}
+      </span>
+      <div
+        onClick={loginWithKakao}
+        className="bg-[#FEE500] flex gap-[8px] justify-center items-center rounded-[8px] w-full py-[16px]"
+      >
+        <Kakao />
+        <span className="text-body02">{"카카오 로그인"}</span>
       </div>
-    </>
+    </div>
   );
 }

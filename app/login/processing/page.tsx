@@ -1,10 +1,13 @@
 "use client";
 
-import { useParams } from "next/navigation";
+import { axiosClientQuery } from "@/util/axios/axios-intances";
+import { useParams, usePathname, useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 export default function LoginProcessing() {
-  const params = useParams();
-  console.log("params: ", params);
-
+  const param = useSearchParams();
+  const res = axiosClientQuery.get("/auth/login/kakao", {
+    params: { code: param.get("code") },
+  });
   return <></>;
 }

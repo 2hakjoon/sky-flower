@@ -1,7 +1,6 @@
-import { BottomNavigation } from "@/components/ui/navigations/BottomNavigation";
 import { SubTopNavigation } from "@/components/ui/navigations/SubPageNavigation";
 
-export default function HomeTemplate({
+export default function LoginTemplate({
   children,
 }: {
   children: React.ReactNode;

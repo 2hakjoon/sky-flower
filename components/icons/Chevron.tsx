@@ -10,8 +10,8 @@ export const Chevron = () => {
       <path
         d="M7 1L1.66939 7.21905C1.2842 7.66844 1.2842 8.33156 1.66939 8.78095L7 15"
         stroke="#202020"
-        stroke-width="1.5"
-        stroke-linecap="round"
+        strokeWidth="1.5"
+        strokeLinecap="round"
       />
     </svg>
   );

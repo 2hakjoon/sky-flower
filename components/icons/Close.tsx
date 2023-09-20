@@ -10,16 +10,16 @@ export const Close = () => {
       <path
         d="M6 18.314L18 6.31396M6 18.314L18 6.31396"
         stroke="#202020"
-        stroke-width="1.5"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
       <path
         d="M18 18.314L6 6.31396M18 18.314L6 6.31396"
         stroke="#202020"
-        stroke-width="1.5"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
     </svg>
   );

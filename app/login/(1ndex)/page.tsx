@@ -1,7 +1,7 @@
 "use client";
 
 import { Kakao } from "@/components/icons/Kakao";
-import { CLIENT_URL } from "@/util/const";
+import { API_URL, CLIENT_URL } from "@/util/const";
 
 export default function Login() {
   const loginWithKakao = () => {

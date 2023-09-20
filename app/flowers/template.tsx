@@ -1,5 +1,5 @@
 import { BottomNavigation } from "@/components/ui/navigations/BottomNavigation";
-import { TopNavigation } from "@/components/ui/navigations/TopNavigation";
+import { HomeTopNavigation } from "@/components/ui/navigations/HomeTopNavigation";
 
 export default function FlowersTemplate({
   children,
@@ -8,7 +8,7 @@ export default function FlowersTemplate({
 }) {
   return (
     <>
-      <TopNavigation />
+      <HomeTopNavigation />
       {children}
       <BottomNavigation />
     </>

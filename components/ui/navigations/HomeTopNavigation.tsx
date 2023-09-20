@@ -3,7 +3,7 @@
 import { useMe } from "@/hooks/auth/useMe";
 import Link from "next/link";
 
-export const TopNavigation = () => {
+export const HomeTopNavigation = () => {
   const { data, error, isLoading } = useMe();
   console.log("error: ", error);
   console.log("data: ", data);

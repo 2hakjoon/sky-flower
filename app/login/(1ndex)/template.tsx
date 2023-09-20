@@ -1,5 +1,5 @@
 import { BottomNavigation } from "@/components/ui/navigations/BottomNavigation";
-import { HomeTopNavigation } from "@/components/ui/navigations/HomeTopNavigation";
+import { SubTopNavigation } from "@/components/ui/navigations/SubPageNavigation";
 
 export default function HomeTemplate({
   children,
@@ -8,9 +8,8 @@ export default function HomeTemplate({
 }) {
   return (
     <>
-      <HomeTopNavigation />
+      <SubTopNavigation title="로그인/회원가입" />
       {children}
-      <BottomNavigation />
     </>
   );
 }

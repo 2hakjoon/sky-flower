@@ -6,7 +6,7 @@ import { useSearchParams } from "next/navigation";
 export default function LoginProcessing() {
   const param = useSearchParams();
   const res = axiosClientQuery.post("/auth/login/kakao", {
-    params: { code: param.get("code") },
+    code: param.get("code"),
   });
   console.log("res: ", res);
 }

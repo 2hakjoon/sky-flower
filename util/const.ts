@@ -8,3 +8,4 @@ export const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
 export const IS_DEBUG = process.env.NEXT_PUBLIC_IS_DEBUG === "true";
 export const CLIENT_URL = process.env.NEXT_PUBLIC_CLIENT_URL;
+export const CLIENT_DOMAIN = process.env.NEXT_PUBLIC_CLIENT_DOMAIN;

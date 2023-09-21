@@ -1,12 +1,13 @@
 "use client";
 
+import { User } from "@/components/icons/User";
 import { useMe } from "@/hooks/auth/useMe";
 import Link from "next/link";
 
 export const HomeTopNavigation = () => {
   const { data, error, isLoading } = useMe();
-  console.log("error: ", error);
   console.log("data: ", data);
+  const isLoggedIn = data?.success === true;
 
   return (
     <>
@@ -15,9 +16,22 @@ export const HomeTopNavigation = () => {
         <Link href="/">
           <span className="head05">{"SKYFLOWER"}</span>
         </Link>
-        <Link href="/login">
-          <span className="tb03 text-bl-600">{"로그인/가입"}</span>
-        </Link>
+        {isLoggedIn ? (
+          <Link href="/my">
+            {data.data.profileImageUrl ? (
+              <img
+                className="w-[32px] h-[32px] rounded-full"
+                src={data.data.profileImageUrl}
+              />
+            ) : (
+              <User />
+            )}
+          </Link>
+        ) : (
+          <Link href="/login">
+            <span className="tb03 text-bl-600">{"로그인/가입"}</span>
+          </Link>
+        )}
       </div>
     </>
   );

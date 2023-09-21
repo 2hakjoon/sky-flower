@@ -1,10 +1,30 @@
 import { UploadPlus } from "@/components/icons/UploadPlus";
+import { useController, useFormContext } from "react-hook-form";
 
 interface ProfileImageUploadProps {
-  name?: string;
+  name: string;
+  rules?: any;
+  defaultValue?: string;
 }
 
-export const ProfileImageUpload = ({ name }: ProfileImageUploadProps) => {
+export const ProfileImageUpload = ({
+  name,
+  defaultValue,
+  rules,
+}: ProfileImageUploadProps) => {
+  const { control } = useFormContext();
+
+  const {
+    field: { onChange, value, ref, onBlur },
+    fieldState: { invalid, isTouched, isDirty },
+    formState: { touchedFields, dirtyFields },
+  } = useController({
+    name,
+    control,
+    rules,
+    defaultValue: defaultValue ?? "",
+  });
+
   return (
     <>
       <label

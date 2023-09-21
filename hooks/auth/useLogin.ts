@@ -5,7 +5,8 @@ interface ILoginResponse {
   success: boolean;
   data: {
     needSignup: boolean;
-    accessToken: string;
+    accessToken?: string;
+    oauthId?: string;
   };
 }
 

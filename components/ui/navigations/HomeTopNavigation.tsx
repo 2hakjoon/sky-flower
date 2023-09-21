@@ -24,7 +24,9 @@ export const HomeTopNavigation = () => {
                 src={data.data.profileImageUrl}
               />
             ) : (
-              <User />
+              <div className="w-[32px] h-[32px]">
+                <User />
+              </div>
             )}
           </Link>
         ) : (

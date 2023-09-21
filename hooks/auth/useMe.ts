@@ -1,5 +1,6 @@
 import { axiosClientQuery } from "@/util/axios/axios-intances";
 import { useQuery } from "@tanstack/react-query";
+import { getCookie } from "cookies-next";
 
 interface IMeResponse {
   success: true;
@@ -15,7 +16,10 @@ export const useMe = () => {
     const { data } = await axiosClientQuery.get("/auth/me");
     return data;
   };
-  return useQuery(["me"], fetcher, {
-    enabled: !!sessionStorage.getItem("access-token"),
-  });
+  return {
+    ...useQuery(["me"], fetcher, {
+      enabled: !!getCookie("access-token"),
+    }),
+    notLoggedIn: !getCookie("access-token"),
+  };
 };

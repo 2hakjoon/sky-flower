@@ -2,29 +2,10 @@ import { UploadPlus } from "@/components/icons/UploadPlus";
 import { useController, useFormContext } from "react-hook-form";
 
 interface ProfileImageUploadProps {
-  name: string;
-  rules?: any;
-  defaultValue?: string;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-export const ProfileImageUpload = ({
-  name,
-  defaultValue,
-  rules,
-}: ProfileImageUploadProps) => {
-  const { control } = useFormContext();
-
-  const {
-    field: { onChange, value, ref, onBlur },
-    fieldState: { invalid, isTouched, isDirty },
-    formState: { touchedFields, dirtyFields },
-  } = useController({
-    name,
-    control,
-    rules,
-    defaultValue: defaultValue ?? "",
-  });
-
+export const ProfileImageUpload = ({ onChange }: ProfileImageUploadProps) => {
   return (
     <>
       <label
@@ -34,9 +15,9 @@ export const ProfileImageUpload = ({
         <UploadPlus />
       </label>
       <input
+        onChange={onChange}
         className="hidden"
         type="file"
-        name={name}
         id="imageUpload"
         accept="png/jpeg"
       />

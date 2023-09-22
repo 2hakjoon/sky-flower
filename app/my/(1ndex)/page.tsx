@@ -8,17 +8,45 @@ import { useForm, FormProvider } from "react-hook-form";
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { SkyFlowerEmpty } from "@/components/ui/empty/SkyFlower";
+import { useImageUpload } from "@/hooks/upload/useImageUpload";
 
 export default function Mypage() {
   const { data, error, notLoggedIn } = useMe();
   const methods = useForm();
   const router = useRouter();
+  const {
+    data: uploadResult,
+    isLoading: isUploading,
+    error: UploadError,
+    mutate: uploadUrl,
+  } = useImageUpload();
+
+  const profileImageFile = methods.watch("profileImage");
+  console.log("profileImageFile: ", profileImageFile);
 
   useEffect(() => {
     if (notLoggedIn) {
       router.push("/login");
     }
   }, [notLoggedIn]);
+
+  useEffect(() => {
+    if (profileImageFile) {
+      console.log("profileImageFile: ", profileImageFile);
+      uploadUrl(profileImageFile);
+    }
+  }, [profileImageFile]);
+
+  const onImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e?.target?.files?.[0];
+    if (!file) return;
+    console.log("file: ", file);
+    uploadUrl(file);
+  };
+
+  useEffect(() => {
+    console.log("uploadResult: ", uploadResult);
+  }, [uploadResult]);
 
   if (error) {
     return <SimpleError />;
@@ -33,7 +61,7 @@ export default function Mypage() {
       <FormProvider {...methods}>
         <div className="tr05 text=gy-600 flex flex-col gap-[8px] bg-wt">
           <span>{"프로필 사진"}</span>
-          <ProfileImageUpload name="profileImage" />
+          <ProfileImageUpload onChange={onImageUpload} />
         </div>
 
         <div className="tr05 text=gy-600  gap-[8px] flex items-center justify-between bg-wt ">

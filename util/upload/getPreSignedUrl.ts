@@ -3,7 +3,7 @@ import { axiosClientQuery } from "../axios/axios-intances";
 
 interface IGetPreSignedUrlResponse {
   signedUrl: string;
-  fileName: string;
+  s3Url: string;
 }
 
 export const getPreSignedUrl = async (

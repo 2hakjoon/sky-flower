@@ -22,7 +22,6 @@ export default function Mypage() {
   } = useImageUpload();
 
   const profileImageFile = methods.watch("profileImage");
-  console.log("profileImageFile: ", profileImageFile);
 
   useEffect(() => {
     if (notLoggedIn) {
@@ -32,7 +31,6 @@ export default function Mypage() {
 
   useEffect(() => {
     if (profileImageFile) {
-      console.log("profileImageFile: ", profileImageFile);
       uploadUrl(profileImageFile);
     }
   }, [profileImageFile]);
@@ -48,7 +46,7 @@ export default function Mypage() {
     console.log("uploadResult: ", uploadResult);
   }, [uploadResult]);
 
-  if (error) {
+  if (error || UploadError) {
     return <SimpleError />;
   }
 
@@ -61,7 +59,10 @@ export default function Mypage() {
       <FormProvider {...methods}>
         <div className="tr05 text=gy-600 flex flex-col gap-[8px] bg-wt">
           <span>{"프로필 사진"}</span>
-          <ProfileImageUpload onChange={onImageUpload} />
+          <ProfileImageUpload
+            onChange={onImageUpload}
+            imageUrl={uploadResult}
+          />
         </div>
 
         <div className="tr05 text=gy-600  gap-[8px] flex items-center justify-between bg-wt ">

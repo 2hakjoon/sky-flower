@@ -5,14 +5,8 @@ import axios from "axios";
 export const useImageUpload = () => {
   const fetcher = async (file: File): Promise<any> => {
     const preSignedUrlData = await getPreSignedUrl(file);
-
-    const formData = new FormData();
-    formData.append("file", file);
-
-    const res = await axios.put(preSignedUrlData.data.signedUrl, formData, {
-      headers: { "Content-Type": file.type },
-    });
-    return res.data;
+    const res = await axios.put(preSignedUrlData.data.signedUrl, file);
+    return preSignedUrlData?.data?.s3Url;
   };
   return useMutation(["imageUpload"], fetcher);
 };

@@ -87,7 +87,7 @@ export default function LoginProcessing() {
         >
           <div className="tr05 text=gy-600 flex flex-col gap-[8px]">
             <span>{"프로필 사진"}</span>
-            <ProfileImageUpload name="profileImage" />
+            <ProfileImageUpload onChange={() => {}} />
           </div>
           <div className="tr05 text=gy-600 flex flex-col gap-[8px]">
             <span>{"닉네임"}</span>

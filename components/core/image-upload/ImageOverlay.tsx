@@ -10,12 +10,34 @@ export const ImageOverlay = ({ url, onOverlayed }: ImageOverlayProps) => {
     if (!canvas) return;
     var ctx = canvas.getContext("2d");
 
-    var img1 = loadImage(
-      "https://cdn.pixabay.com/photo/2022/12/21/12/14/black-circle-7669912_640.png",
-      main
-    );
+    var img1 = loadImage("/marker-frame.png", main);
     var img2 = loadImage(url, main);
     console.log("img2: ", img2);
+
+    function roundedImage(
+      x: number,
+      y: number,
+      width: number,
+      height: number,
+      radius: number
+    ) {
+      ctx.beginPath();
+      ctx.moveTo(x + radius, y);
+      ctx.lineTo(x + width - radius, y);
+      ctx.quadraticCurveTo(x + width, y, x + width, y + radius);
+      ctx.lineTo(x + width, y + height - radius);
+      ctx.quadraticCurveTo(
+        x + width,
+        y + height,
+        x + width - radius,
+        y + height
+      );
+      ctx.lineTo(x + radius, y + height);
+      ctx.quadraticCurveTo(x, y + height, x, y + height - radius);
+      ctx.lineTo(x, y + radius);
+      ctx.quadraticCurveTo(x, y, x + radius, y);
+      ctx.closePath();
+    }
 
     function main() {
       imagesLoaded += 1;
@@ -23,15 +45,12 @@ export const ImageOverlay = ({ url, onOverlayed }: ImageOverlayProps) => {
       console.log("imagesLoaded: ", imagesLoaded);
       if (imagesLoaded == 2) {
         img1.crossOrigin = "Anonymous";
-        ctx.drawImage(img1, 0, 0, 200, 200);
+        ctx.drawImage(img1, 0, 0, 90, 98);
 
         ctx.save();
-        ctx.beginPath();
-        ctx.arc(100, 100, 80, 0, Math.PI * 2, false);
-        ctx.strokeStyle = "#2465D3";
-        ctx.stroke();
+        roundedImage(9, 9, 72, 72, 10);
         ctx.clip();
-        ctx.drawImage(img2, 20, 20, 180, 180);
+        ctx.drawImage(img2, 9, 9, 72, 72);
         ctx.restore();
         canvas.toBlob((blob: any) => {
           let file = new File([blob], "fileName.jpg", { type: "image/png" });

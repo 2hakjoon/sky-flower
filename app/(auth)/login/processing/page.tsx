@@ -46,7 +46,7 @@ export default function LoginProcessing() {
       return;
     }
     if (needSignUp === true) {
-      router.push("/join");
+      router.push(`/join?oauthId=${loginData.data.oauthId}`);
       return;
     }
     setCookie("access-token", loginData?.data?.accessToken, {

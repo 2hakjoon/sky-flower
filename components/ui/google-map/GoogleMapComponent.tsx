@@ -2,7 +2,7 @@
 
 import React, { useEffect } from "react";
 import { GoogleMap, useJsApiLoader, MarkerF } from "@react-google-maps/api";
-import { GOOGLE_MAP_API_KEY } from "@/util/const";
+import { GOOGLE_GEOCODING_API_KEY, GOOGLE_MAP_API_KEY } from "@/util/const";
 import debounce from "lodash/debounce";
 import axios from "axios";
 
@@ -56,7 +56,7 @@ function GoogleMapComponent({
     const center = map.getCenter();
     if (!center) return;
     const res = await axios.get(
-      `https://maps.googleapis.com/maps/api/geocode/json?latlng=${center.lat()},${center.lng()}&location_type=ROOFTOP&result_type=street_address|administrative_area_level_1|administrative_area_level_1&key=AIzaSyDQo2ncDPy6_bmgapiep7KnA4LM0Cia8Vc`
+      `https://maps.googleapis.com/maps/api/geocode/json?latlng=${center.lat()},${center.lng()}&location_type=ROOFTOP&result_type=street_address|administrative_area_level_1|administrative_area_level_1&key=${GOOGLE_GEOCODING_API_KEY}`
     );
 
     const address = res?.data?.results?.[0]?.formatted_address
@@ -103,7 +103,7 @@ function GoogleMapComponent({
     >
       {markers.map((marker, index) => (
         <MarkerF
-          key={`${index}-${zoom}`}
+          key={`${index}-${zoom}-${marker.image}`}
           position={{ lat: marker.latitude, lng: marker.longitude }}
           icon={{
             url: marker.image,

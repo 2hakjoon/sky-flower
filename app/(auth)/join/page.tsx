@@ -10,9 +10,9 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { SubmitButton } from "@/components/ui/input/SubmitButton";
 import { useJoin } from "@/hooks/auth/useJoin";
-import { SimpleError } from "@/components/ui/error/SImpleError";
 import { setCookie } from "cookies-next";
 import { CLIENT_DOMAIN, IS_DEBUG } from "@/util/const";
+import { useState } from "react";
 
 const schema = z.object({
   profileImage: z
@@ -37,6 +37,7 @@ export default function LoginProcessing() {
   const oauthId = param.get("oauthId");
 
   const { data: joinData, mutate: mutateJoin } = useJoin();
+  const [uploadedImageUrl, setUploadedImageUrl] = useState<string>("");
 
   const methods = useForm<IFomFields>({
     resolver: zodResolver(schema),
@@ -78,6 +79,18 @@ export default function LoginProcessing() {
     }
   }, [joinData]);
 
+  const onImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e?.target?.files?.[0];
+    if (!file) return;
+
+    var reader = new FileReader();
+    reader.onload = function () {
+      var dataURL = reader.result;
+      setUploadedImageUrl(dataURL as string);
+    };
+    reader.readAsDataURL(file);
+  };
+
   return (
     <div className="flex flex-col px-[16px] pt-[24px]">
       <FormProvider {...methods}>
@@ -87,7 +100,10 @@ export default function LoginProcessing() {
         >
           <div className="tr05 text=gy-600 flex flex-col gap-[8px]">
             <span>{"프로필 사진"}</span>
-            <ProfileImageUpload onChange={() => {}} />
+            <ProfileImageUpload
+              onChange={onImageUpload}
+              imageUrl={uploadedImageUrl}
+            />
           </div>
           <div className="tr05 text=gy-600 flex flex-col gap-[8px]">
             <span>{"닉네임"}</span>

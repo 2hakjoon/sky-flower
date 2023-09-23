@@ -6,8 +6,8 @@ interface IMeResponse {
   success: true;
   data: {
     userId: 0;
-    nickname: "string";
-    profileImageUrl: "string";
+    nickname: string;
+    profileImageUrl: string;
   };
 }
 

@@ -10,10 +10,27 @@ import { useState } from "react";
 export default function Gardening() {
   const [uploadedImages, setUploadedImages] = useState<MarkerProps[]>([]);
   const [center, setCenter] = useState<{ lat: number; lng: number }>();
+  const [address, setAddress] = useState<string | undefined>("");
   const [dataUrl, setSetDataUrl] = useState<string>();
 
-  const onChangeCenter = (center: { lat: number; lng: number }) => {
-    setCenter(center);
+  const onChangeCenter = (data: {
+    lat: number;
+    lng: number;
+    address?: string;
+  }) => {
+    console.log("data: ", data);
+    setCenter({ lat: data.lat, lng: data.lng });
+    setAddress(data.address);
+    if (uploadedImages?.length) {
+      const marker = uploadedImages[0];
+      setUploadedImages((prev) => [
+        {
+          latitude: data.lat,
+          longitude: data.lng,
+          image: marker.image,
+        },
+      ]);
+    }
   };
 
   const onUploaded = (File: File) => {

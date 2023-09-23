@@ -9,7 +9,6 @@ export const ProfileImageUpload = ({
   onChange,
   imageUrl,
 }: ProfileImageUploadProps) => {
-  console.log("imageUrl: ", imageUrl);
   return (
     <>
       <label

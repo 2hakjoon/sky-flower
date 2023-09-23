@@ -29,6 +29,68 @@ const HomeIcon = ({ isActive }: IIconProps) => {
   );
 };
 
+const GalleryIcon = ({ isActive }: IIconProps) => {
+  return (
+    <svg
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <rect
+        x="2"
+        y="2"
+        width="20"
+        height="20"
+        rx="5"
+        stroke={isActive ? activeColor : inactiveColor}
+        stroke-width="1.5"
+      />
+      <path
+        d="M2.5 17.5L4.7592 15.8863C5.47521 15.3749 6.45603 15.456 7.07822 16.0782L8.15147 17.1515C8.6201 17.6201 9.3799 17.6201 9.84853 17.1515L14.8377 12.1623C15.496 11.504 16.5476 11.4563 17.2628 12.0523L22 16"
+        stroke={isActive ? activeColor : inactiveColor}
+        stroke-width="1.5"
+        stroke-linecap="round"
+      />
+      <circle
+        cx="2"
+        cy="2"
+        r="2"
+        transform="matrix(-1 0 0 1 10 6)"
+        stroke={isActive ? activeColor : inactiveColor}
+        stroke-width="1.5"
+      />
+    </svg>
+  );
+};
+
+export const MapPingIcon = ({ isActive }: IIconProps) => {
+  return (
+    <svg
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M20 10.4167C20 15.8445 13.6 21.5 12 21.5C10.4 21.5 4 15.8445 4 10.4167C4 6.04441 7.58172 2.5 12 2.5C16.4183 2.5 20 6.04441 20 10.4167Z"
+        stroke={isActive ? activeColor : inactiveColor}
+        stroke-width="2"
+      />
+      <circle
+        cx="3"
+        cy="3"
+        r="3"
+        transform="matrix(-1 0 0 1 15 7)"
+        stroke={isActive ? activeColor : inactiveColor}
+        stroke-width="2"
+      />
+    </svg>
+  );
+};
+
 export const BottomNavigation = () => {
   const path = usePathname();
 
@@ -38,11 +100,6 @@ export const BottomNavigation = () => {
       iconRender: (isActive: boolean) => <HomeIcon isActive={isActive} />,
       text: "홈",
     },
-    {
-      href: "/flower-garden",
-      iconRender: (isActive: boolean) => <HomeIcon isActive={isActive} />,
-      text: "지도",
-    },
     // {
     //   href: "/flowers",
     //   iconRender: (isActive: boolean) => <HomeIcon isActive={isActive} />,
@@ -50,8 +107,13 @@ export const BottomNavigation = () => {
     // },
     {
       href: "/gardening",
-      iconRender: (isActive: boolean) => <HomeIcon isActive={isActive} />,
-      text: "업로드",
+      iconRender: (isActive: boolean) => <GalleryIcon isActive={isActive} />,
+      text: "촬영",
+    },
+    {
+      href: "/flower-garden",
+      iconRender: (isActive: boolean) => <MapPingIcon isActive={isActive} />,
+      text: "지도",
     },
   ];
 

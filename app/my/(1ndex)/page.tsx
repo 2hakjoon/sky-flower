@@ -9,6 +9,8 @@ import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { SkyFlowerEmpty } from "@/components/ui/empty/SkyFlower";
 import { useImageUpload } from "@/hooks/upload/useImageUpload";
+import { useUpdateProfileImage } from "@/hooks/auth/useUpdateProfileImage";
+import { deleteCookie } from "cookies-next";
 
 export default function Mypage() {
   const { data, error, notLoggedIn } = useMe();
@@ -20,6 +22,7 @@ export default function Mypage() {
     error: UploadError,
     mutate: uploadUrl,
   } = useImageUpload();
+  const { mutate: updateProfileImage } = useUpdateProfileImage();
 
   const profileImageFile = methods.watch("profileImage");
 
@@ -43,7 +46,8 @@ export default function Mypage() {
   };
 
   useEffect(() => {
-    console.log("uploadResult: ", uploadResult);
+    if (!uploadResult) return;
+    updateProfileImage({ profileImageUrl: uploadResult });
   }, [uploadResult]);
 
   if (error || UploadError) {
@@ -54,6 +58,11 @@ export default function Mypage() {
     return <></>;
   }
 
+  const handleLogout = () => {
+    deleteCookie("access-token");
+    window.location.href = "/";
+  };
+
   return (
     <div className="flex flex-col px-[20px] mt-[24px] ">
       <FormProvider {...methods}>
@@ -61,7 +70,7 @@ export default function Mypage() {
           <span>{"프로필 사진"}</span>
           <ProfileImageUpload
             onChange={onImageUpload}
-            imageUrl={uploadResult}
+            imageUrl={uploadResult || data.data.profileImageUrl}
           />
         </div>
 
@@ -95,12 +104,15 @@ export default function Mypage() {
         </div>
       </FormProvider>
       <div className="w-full bg-gy-40 h-[12px]" />
-      <div className="py-[24px] px-full tb02 text-gy-900 flex justify-center bg-wt ">
+      <div
+        onClick={handleLogout}
+        className="py-[24px] px-full tb02 text-gy-900 flex justify-center bg-wt  cursor-pointer"
+      >
         <div>{"로그아웃"}</div>
       </div>
 
       <div className="w-full bg-gy-40 h-[12px]" />
-      <div className="py-[24px] px-full tb02 text-rd-500 flex justify-center bg-wt">
+      <div className="py-[24px] px-full tb02 text-rd-500 flex justify-center bg-wt cursor-pointer">
         <div>{"회원탈퇴"}</div>
       </div>
       <div className="w-full bg-gy-40 h-[12px]" />

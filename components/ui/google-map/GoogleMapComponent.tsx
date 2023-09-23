@@ -4,6 +4,7 @@ import React, { useEffect } from "react";
 import { GoogleMap, useJsApiLoader, MarkerF } from "@react-google-maps/api";
 import { GOOGLE_MAP_API_KEY } from "@/util/const";
 import debounce from "lodash/debounce";
+import axios from "axios";
 
 export interface MarkerProps {
   latitude: number;
@@ -12,12 +13,16 @@ export interface MarkerProps {
 }
 
 const containerStyle = {
-  width: "400px",
+  width: "100%",
   height: "400px",
 };
 
 interface GoogleMapComponentProps {
-  onChangeCenter: (center: { lat: number; lng: number }) => void;
+  onChangeCenter: (center: {
+    lat: number;
+    lng: number;
+    address?: string;
+  }) => void;
   markers: MarkerProps[];
 }
 
@@ -46,11 +51,24 @@ function GoogleMapComponent({
     setMap(null);
   }, []);
 
-  const onBoundsChanged = debounce(() => {
+  const onBoundsChanged = debounce(async () => {
     if (!map) return;
     const center = map.getCenter();
     if (!center) return;
-    onChangeCenter({ lat: center.lat(), lng: center.lng() });
+    const res = await axios.get(
+      `https://maps.googleapis.com/maps/api/geocode/json?latlng=${center.lat()},${center.lng()}&location_type=ROOFTOP&result_type=street_address|administrative_area_level_1|administrative_area_level_1&key=AIzaSyDQo2ncDPy6_bmgapiep7KnA4LM0Cia8Vc`
+    );
+
+    const address = res?.data?.results?.[0]?.formatted_address
+      ?.split(" ")
+      ?.splice(1, 2)
+      ?.join(" ");
+    onChangeCenter({
+      lat: center.lat(),
+      lng: center.lng(),
+      address,
+    });
+    console.log("res: ", res);
   }, 200);
 
   useEffect(() => {
@@ -89,7 +107,7 @@ function GoogleMapComponent({
           position={{ lat: marker.latitude, lng: marker.longitude }}
           icon={{
             url: marker.image,
-            scaledSize: new google.maps.Size(50, 50),
+            scaledSize: new google.maps.Size(100, 100),
           }}
         />
       ))}

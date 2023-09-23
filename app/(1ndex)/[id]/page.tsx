@@ -1,3 +1,3 @@
-export const FeedDetail = () => {
+export default function FeedDetail() {
   return "상세";
-};
+}

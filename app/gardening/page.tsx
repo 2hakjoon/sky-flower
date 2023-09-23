@@ -57,7 +57,6 @@ export default function Gardening() {
         reader.onload = function () {
           var dataURL = reader.result;
           setUploadedImages((prev) => [
-            ...prev,
             {
               latitude: center?.lat || 0,
               longitude: center?.lng || 0,

@@ -72,5 +72,5 @@ export const ImageOverlay = ({ url, onOverlayed }: ImageOverlayProps) => {
     }
   }, [url]);
 
-  return <canvas key={url} width="200" height="200" id="canvas"></canvas>;
+  return <canvas key={url} width="90" height="98" id="canvas"></canvas>;
 };

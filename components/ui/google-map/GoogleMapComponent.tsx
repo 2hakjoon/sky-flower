@@ -12,23 +12,20 @@ export interface MarkerProps {
   image: string;
 }
 
-const containerStyle = {
-  width: "100%",
-  height: "400px",
-};
-
 interface GoogleMapComponentProps {
   onChangeCenter: (center: {
     lat: number;
     lng: number;
     address?: string;
   }) => void;
+  mapContainerStyle?: React.CSSProperties;
   markers: MarkerProps[];
 }
 
 function GoogleMapComponent({
   onChangeCenter,
   markers,
+  mapContainerStyle = { width: "100%", height: "500px" },
 }: GoogleMapComponentProps) {
   const { isLoaded } = useJsApiLoader({
     id: "google-map",
@@ -91,7 +88,7 @@ function GoogleMapComponent({
       options={{
         disableDefaultUI: true,
       }}
-      mapContainerStyle={containerStyle}
+      mapContainerStyle={mapContainerStyle}
       center={center}
       onLoad={onLoad}
       onUnmount={onUnmount}
@@ -107,7 +104,7 @@ function GoogleMapComponent({
           position={{ lat: marker.latitude, lng: marker.longitude }}
           icon={{
             url: marker.image,
-            scaledSize: new google.maps.Size(100, 100),
+            scaledSize: new google.maps.Size(90, 98),
           }}
         />
       ))}

@@ -1,5 +1,6 @@
 "use client";
 
+import { useMe } from "@/hooks/auth/useMe";
 import clsx from "clsx";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
@@ -93,6 +94,8 @@ export const MapPingIcon = ({ isActive }: IIconProps) => {
 
 export const BottomNavigation = () => {
   const path = usePathname();
+  const { data } = useMe();
+  console.log("data: ", data);
 
   const menus = [
     {
@@ -106,7 +109,7 @@ export const BottomNavigation = () => {
     //   text: "사진첩",
     // },
     {
-      href: "/gardening",
+      href: data ? "/gardening" : "/login",
       iconRender: (isActive: boolean) => <GalleryIcon isActive={isActive} />,
       text: "촬영",
     },

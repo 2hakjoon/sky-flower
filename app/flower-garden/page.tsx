@@ -5,13 +5,12 @@ import { useWritePosts } from "@/hooks/posts/useWritePosts";
 
 export default function FlowerGarden() {
   const { data: posts } = useWritePosts();
-  console.log("posts: ", posts);
   const markers =
     posts?.data?.list?.map((post: any) => {
       return {
         latitude: post.latitude,
         longitude: post.longitude,
-        image: post.photoUrl,
+        image: post.markerPhotoUrl,
       };
     }) || [];
 

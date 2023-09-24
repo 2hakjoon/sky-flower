@@ -12,6 +12,7 @@ interface IFeedCardProps {
   photoUrl: string;
   likeCount: number;
   isLiked: boolean;
+  userProfileUrl: string;
 }
 
 export const FeedCard = ({
@@ -19,6 +20,7 @@ export const FeedCard = ({
   userId,
   userNickname,
   address,
+  userProfileUrl,
   latitude,
   longitude,
   photoUrl,
@@ -30,7 +32,7 @@ export const FeedCard = ({
       <div className="px-[12px] py-[8px] flex gap-[8px] items-center">
         <img
           alt="프로필 사진"
-          src={photoUrl}
+          src={userProfileUrl}
           className="rounded-full w-[32px] h-[32px] object-cover"
         />
         <span className="tr02">{userNickname}</span>

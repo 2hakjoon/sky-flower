@@ -18,6 +18,7 @@ export default function Gardening() {
   const [center, setCenter] = useState<{ lat: number; lng: number }>();
   const [address, setAddress] = useState<string | undefined>("");
   const [dataUrl, setSetDataUrl] = useState<string>();
+  const [photoUrl, setPhotoUrl] = useState<string>();
   const { data: writePostData, mutate: writePost } = useWritePost();
 
   const onChangeCenter = (data: {
@@ -38,11 +39,15 @@ export default function Gardening() {
     }
   };
 
-  const onUploaded = (File: File) => {
+  const onUploaded = async (File: File) => {
     var reader = new FileReader();
-    reader.onload = function () {
+    reader.onload = async function () {
       var dataURL = reader.result;
       setSetDataUrl(dataURL as string);
+      const file = await url2File(dataURL as string, File.name);
+      const preSignedUrlData = await getPreSignedUrl(file);
+      const res = await axios.put(preSignedUrlData.data.signedUrl, file);
+      setPhotoUrl(preSignedUrlData.data.s3Url);
     };
     reader.readAsDataURL(File);
   };
@@ -83,7 +88,8 @@ export default function Gardening() {
     if (!uploadedImages?.length) return;
     const marker = uploadedImages?.[0];
     writePost({
-      photoUrl: marker.image,
+      photoUrl: photoUrl,
+      markerPhotoUrl: marker.image,
       latitude: marker.latitude,
       longitude: marker.longitude,
       address: address,

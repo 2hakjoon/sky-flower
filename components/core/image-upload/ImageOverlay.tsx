@@ -10,7 +10,7 @@ export const ImageOverlay = ({ url, onOverlayed }: ImageOverlayProps) => {
     if (!canvas) return;
     var ctx = canvas.getContext("2d");
 
-    var img1 = loadImage("/marker-frame.png", main);
+    var img1 = loadImage(`/marker-frame.png?t=${Math.random()}`, main);
     var img2 = loadImage(url, main);
     console.log("img2: ", img2);
 
